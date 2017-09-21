@@ -32,8 +32,8 @@
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Station 1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="data">ข้อมูลการตรวจวัด</a></li>
-          <li><a href="#">กราฟ</a></li>
-          <!-- <li><a href="#">Page 1-3</a></li> -->
+          <li><a href="graph">กราฟ</a></li>
+          <li><a href="map">Map</a></li>
         </ul>
       </li>
      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Mobile device <span class="caret"></span></a>

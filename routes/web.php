@@ -18,7 +18,7 @@ Route::get('/home', function () {
 	return view('home');
 });
 
-Route::get('/data','StationController@getData');
+Route::get('/data','StationController@getData')->name('data');
 Route::post('save', 'StationController@save');
 Route::get('/setdate','StationController@setDate');
 
@@ -33,4 +33,10 @@ Route::get('/animal', function () {
 });
 Route::get('/water', function () {
 	return view('water');
+});
+Route::get('/graph', function () {
+	return view('graph');
+});
+Route::get('/map', function () {
+	return view('map');
 });
