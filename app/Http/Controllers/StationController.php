@@ -8,6 +8,7 @@ use DB;
 use Session;
 use Input;
 use App\Station;
+
 class StationController extends Controller {
     /**
      * Display a listing of the resource.
@@ -15,41 +16,39 @@ class StationController extends Controller {
      * @return \Illuminate\Http\Response
      */
      
-     public function index(){
+     public function index() {
         $url="https://api.thingspeak.com/channels/258624/feeds.json?timezone=Asia/Bangkok";
         $json=file_get_contents($url);
         $data=json_decode($json);
         return view('result')->with('data', $data);
     }
 
-    public function getData()
-    {
-    $url="https://api.thingspeak.com/channels/242711/feeds.json?timezone=Asia/Bangkok";
-    $json=file_get_contents($url);
-    $data=json_decode($json); // return response()->json($data);
-    $result=count($data->feeds); // for ($i=0; $i < count($data->feeds) ; $i++) {
-    //  echo $data->feeds[$i]->created_at . '<br/>';
-    // $data = new Data();
-    // $data->created_at = $data->feeds[0]->created_at;
-    // $data->entry_id = $data->feeds[0]->entry_id;
-    // $data->field1 = $data->feeds[0]->field1;
-    // $data->field2 = $data->feeds[0]->field2;
-    // $data->save();
-    //  }
-    return view('data') ->with('dataa', $data); // ->with('result',$result);  
+    public function getData() {
+        $url="https://api.thingspeak.com/channels/242711/feeds.json?timezone=Asia/Bangkok";
+        $json=file_get_contents($url);
+        $data=json_decode($json); // return response()->json($data);
+        $result=count($data->feeds); // for ($i=0; $i < count($data->feeds) ; $i++) {
+        $lastest = Station::orderBy('timelog', 'desc')->first();
+        //dd($data->feeds);
+
+        foreach ($data->feeds as $item) {
+            $turbidity   = $item->field1;
+            $temperature = $item->field2;
+            $timelog     = $item->created_at;
+            if($timelog > $lastest->timelog) {
+                $station = Station::create(['turbidity' => $turbidity, 'temperature' => $temperature, 'timelog' => $timelog]);
+            }
+            //DB::table('station')->insert(['turbidity'=>$data2, 'temperature'=>$data1, 'time'=>$data3]);
+        }
+        return view('data') ->with('data', $data); // ->with('result',$result);  
     }
 
     public function save(Request $request) {    
         $url="https://api.thingspeak.com/channels/242711/feeds.json?timezone=Asia/Bangkok";
         $json=file_get_contents($url);
         $data=json_decode($json);
-        $count=count($data->feeds);
-        foreach ($data->feeds as $data){
-            $data1=$data->field1;
-            $data2=$data->field2;
-            $data3=$data->created_at;
-            DB::table('station')->insert(['turbidity'=>$data2, 'temp'=>$data1, 'time'=>$data3]);
-        }
+        //$count=count($data->feeds);
+        
         return back();
     }
     public function newsave() {

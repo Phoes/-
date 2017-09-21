@@ -24,17 +24,17 @@
       
     //}
 ?>
-    @foreach ($dataa->feeds as $data)
+    @foreach ($data->feeds as $item)
     <tr>
-      <td>@if ($data->field1 > 29)
-        <font color="red">{{$data->field1}}</font>
-        @else {{$data->field1}} @endif
+      <td>@if ($item->field1 > 29)
+        <font color="red">{{$item->field1}}</font>
+        @else {{$item->field1}} @endif
       </td>
-      <td>@if ($data->field2 < 2.82)
-        <font color="red">{{$data->field2}}</font>
-        @else {{$data->field2}} @endif
+      <td>@if ($item->field2 < 2.82)
+        <font color="red">{{$item->field2}}</font>
+        @else {{$item->field2}} @endif
       </td>
-      <td>{{$data->created_at}}</td>
+      <td>{{$item->created_at}}</td>
     </tr>
     @endforeach
 </table><br>
