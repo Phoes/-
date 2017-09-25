@@ -2,13 +2,16 @@
 
 
 @section('sidebar')
-    <center>ข้อมูลการวัด <br>
+    <center>ข้อมูลการวัดน้ำตัวติดตั้งประจำที่ <br><br>
+    <center><div align="center"><i style="font-size:10px" class="fa">&#xf0c8;</i> ค่าน้ำปกติ</div>
+    <div align="center"><i style="font-size:10px;color: red" class="fa">&#xf0c8;</i> ค่าน้ำเสี่ยง</div>
+  </center><br>
     
     
 
-<form class="form-horizontal" action="{{url('save')}}" method="POST" role="form" id='form'>
+<!-- <form class="form-horizontal" action="{{url('save')}}" method="POST" role="form" id='form'>
                     {!! csrf_field() !!}
-                    <fieldset>
+                    <fieldset> -->
 <table>
     <tr>
       <th>อุณหภูมิ</th>
@@ -26,11 +29,11 @@
 ?>
     @foreach ($data->feeds as $item)
     <tr>
-      <td>@if ($item->field1 > 29)
+      <td>@if ($item->field1 > 30 || $item->field1 < 23)
         <font color="red">{{$item->field1}}</font>
         @else {{$item->field1}} @endif
       </td>
-      <td>@if ($item->field2 < 2.82)
+      <td>@if ($item->field2 < 3.00)
         <font color="red">{{$item->field2}}</font>
         @else {{$item->field2}} @endif
       </td>
@@ -38,9 +41,9 @@
     </tr>
     @endforeach
 </table><br>
-<button id="submitButton" name="submitButton" class="btn btn-success">Save</button><br>
+<!-- <button id="submitButton" name="submitButton" class="btn btn-success">Save</button><br>
   </fieldset>
-</form>
+</form> -->
 
 
 

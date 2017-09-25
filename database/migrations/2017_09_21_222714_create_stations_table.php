@@ -15,6 +15,7 @@ class CreateStationsTable extends Migration
     {
         Schema::create('stations', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('entry_id');
             $table->float('turbidity', 8, 5);
             $table->float('temperature', 8, 5);
             $table->string('timelog', 255);

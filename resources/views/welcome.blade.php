@@ -13,11 +13,7 @@
    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <style>
-.p1 {
-    background-color:#ffffff;
-}
-</style>
+  
 </head>
 
 <body class="p1">
@@ -25,22 +21,32 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">ระบบตรวจสอบคุณภาพน้ำ</a>
+      <a class="navbar-brand" href="home">ระบบตรวจสอบคุณภาพน้ำ</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="home">Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Station 1 <span class="caret"></span></a>
+    <li class="active"><a href="home">Home</a></li>
+    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Station 1 
+      <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="data">ข้อมูลการตรวจวัด</a></li>
           <li><a href="graph">กราฟ</a></li>
           <li><a href="map">Map</a></li>
         </ul>
       </li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Station 2 
+      <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+<!--           <li><a href="data">ข้อมูลการตรวจวัด</a></li>
+          <li><a href="graph">กราฟ</a></li>
+          <li><a href="map">Map</a></li> -->
+        </ul>
+      </li>
      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Mobile device <span class="caret"></span></a>
         <ul class="dropdown-menu">
+           <li><a href="location">กรอกสถานที่</a></li>
           <li><a href="result">ข้อมูลการตรวจวัด</a></li>
-          <li><a href="#">กราฟ</a></li>
-         <!--  <li><a href="#">Page 1-3</a></li> -->
+          <!-- <li><a href="#">กราฟ</a></li> -->
+         
         </ul>
       </li>
       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ตารางคุณภาพน้ำ<span class="caret"></span></a>

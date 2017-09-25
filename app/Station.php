@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Station extends Model
 {
-    protected $fillable = ['turbidity', 'temperature', 'timelog'];
+    protected $fillable = ['entry_id', 'turbidity', 'temperature', 'timelog'];
 }

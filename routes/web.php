@@ -10,11 +10,11 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
 	return view('home');
-});
+});*/
 
-Route::get('/home', function () {
+Route::get('/', function () {
 	return view('home');
 });
 
@@ -40,3 +40,10 @@ Route::get('/graph', function () {
 Route::get('/map', function () {
 	return view('map');
 });
+Route::get('/location', function () {
+	return view('location');
+});
+
+//search
+Route::post('search', 'StationController@search');
+Route::get('/home','StationController@home')->name('data');

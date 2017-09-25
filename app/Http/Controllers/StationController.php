@@ -20,7 +20,16 @@ class StationController extends Controller {
         $url="https://api.thingspeak.com/channels/258624/feeds.json?timezone=Asia/Bangkok";
         $json=file_get_contents($url);
         $data=json_decode($json);
-        return view('result')->with('data', $data);
+        //data
+         $name = "สถานที่";
+        $tambon = "สถานที่";
+        $amphoe = "สถานที่";
+        $county = "สถานที่";
+        return view('result')->with('data', $data)
+                         ->with('name',$name)
+                         ->with('tambon',$tambon)
+                         ->with('amphoe',$amphoe)
+                         ->with('county',$county);
     }
 
     public function getData() {
@@ -29,17 +38,6 @@ class StationController extends Controller {
         $data=json_decode($json); // return response()->json($data);
         $result=count($data->feeds); // for ($i=0; $i < count($data->feeds) ; $i++) {
         $lastest = Station::orderBy('timelog', 'desc')->first();
-        //dd($data->feeds);
-
-        foreach ($data->feeds as $item) {
-            $turbidity   = $item->field1;
-            $temperature = $item->field2;
-            $timelog     = $item->created_at;
-            if($timelog > $lastest->timelog) {
-                $station = Station::create(['turbidity' => $turbidity, 'temperature' => $temperature, 'timelog' => $timelog]);
-            }
-            //DB::table('station')->insert(['turbidity'=>$data2, 'temperature'=>$data1, 'time'=>$data3]);
-        }
         return view('data') ->with('data', $data); // ->with('result',$result);  
     }
 
@@ -55,6 +53,7 @@ class StationController extends Controller {
         $url="https://api.thingspeak.com/channels/258624/feeds.json?timezone=Asia/Bangkok";
         $json=file_get_contents($url);
         $datax=json_decode($json);
+
         for ($i=0;$i < count($datax->feeds); $i++) {
             $data4=$datax->feeds[$i]->field1;
             $data5=$datax->feeds[$i]->field2;
@@ -63,5 +62,25 @@ class StationController extends Controller {
             DB::table('device')->insert(['newturb'=>$data5, 'newtemp'=>$data4, 'ph'=>$data6, 'newtime'=>$data7]);
         }
         return back();
+    }
+    public function search(Request $request) {  
+      $url="https://api.thingspeak.com/channels/258624/feeds.json?timezone=Asia/Bangkok";
+        $json=file_get_contents($url);
+        $data=json_decode($json);  
+       $name = $request->get('name');
+      $tambon = $request->get('tambon');
+      $amphoe = $request->get('amphoe');
+      $county = $request->get('county');
+      
+      return view('result')->with('data', $data)->with('name',$name)
+                         ->with('tambon',$tambon)
+                         ->with('amphoe',$amphoe)
+                         ->with('county',$county);
+    }
+     public function home() {
+        $url="https://api.thingspeak.com/channels/242711/feeds.json?timezone=Asia/Bangkok";
+        $json=file_get_contents($url);
+        $data=json_decode($json);
+        return view('home')->with('data', $data);
     }
 }
