@@ -14,9 +14,10 @@
                     <fieldset> -->
 <table>
     <tr>
-      <th>อุณหภูมิ</th>
+      <th>อุณหภูมิ (องศาเซลเซียส)</th>
       <th>ความขุ่น</th>
       <th>วันที่ / เวลา</th>
+      <th>สถานะ</th>
     </tr>
 
 <?php
@@ -29,15 +30,29 @@
 ?>
     @foreach ($data->feeds as $item)
     <tr>
-      <td>@if ($item->field1 > 30 || $item->field1 < 23)
+      <td>@if ($item->field1 > 30)
         <font color="red">{{$item->field1}}</font>
+        @elseif($item->field1 < 20 )
+        <font color="#0066FF">{{$item->field1}}</font>
         @else {{$item->field1}} @endif
       </td>
-      <td>@if ($item->field2 < 3.00)
+      <td>@if ($item->field2 < 4.95)
         <font color="red">{{$item->field2}}</font>
         @else {{$item->field2}} @endif
       </td>
       <td>{{$item->created_at}}</td>
+      <td>@if ($item->field1 > 30 && $item->field2 < 4.95 )
+                  <font color="red"> นำ้เสี่ยง </font>
+          @elseif($item->field1 < 20  && $item->field2 < 4.95)
+                    <font color="red">น้ำเสี่ยง </font>
+          @elseif ($item->field1 < 20 && $item->field2 > 4.95)
+                  <font color="#0066FF"> น้ำเย็น </font>
+          @elseif ($item->field1 > 30 && $item->field2 > 4.95)
+                   <font color="red">น้ำร้อน </font>
+          @elseif (($item->field1 >20  || $item->field1 < 30 ) && $item->field2 < 4.95)
+                   <font color="red">น้ำขุ่น </font>
+           @else น้ำปกติ @endif
+      </td>
     </tr>
     @endforeach
 </table><br>

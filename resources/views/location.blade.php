@@ -1,10 +1,10 @@
-@extends('welcome') 
+<!-- @extends('welcome') 
 @section('sidebar')
 <form class="form-horizontal" action="{{url('search')}}" method="POST" role="form">
     {!! csrf_field() !!}
     <fieldset>
     
-     <p class="well col-md-6 col-xs-offset-3">กรุณากรอกสถานที่การตรวจวัด</p><br><br><br><br>
+     <p class="well col-md-6 col-xs-offset-3" style="color: red">กรุณากรอกสถานที่การตรวจวัด</p><br><br><br><br>
     <div class="form-group">
       <label class="col-sm-2 control-label col-xs-offset-3">สถานที่ :</label> 
       <div class="col-sm-3">
@@ -33,3 +33,4 @@
     </fieldset>
   </form>
   @stop
+ -->
